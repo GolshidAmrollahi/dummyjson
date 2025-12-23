@@ -1,8 +1,14 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import {
+  QueryClient,
+  QueryClientProvider,
+  
+} from '@tanstack/react-query'
 import { MainLayout } from "./layouts/main";
 import { HomePage } from "./pages/home";
 import { UsersPage } from "./pages/users";
 import { PostsPage } from "./pages/posts";
+import { ErrorBoundary } from "./components/errorBoundary";
 
 const router = createBrowserRouter([
   // {
@@ -21,10 +27,12 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />
 
+
       },
       {
         path: "users",
-        element: <UsersPage />
+        element: <UsersPage />,
+        errorElement: <ErrorBoundary />
       },
       {
         path: "posts",
@@ -35,17 +43,16 @@ const router = createBrowserRouter([
 
 ])
 
+const queryClient = new QueryClient()
+
 function App() {
 
 
   return (
-    
-      <RouterProvider router={router}>
-
-      </RouterProvider>
-
-    
-  )
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
+  );
 }
 
 export default App
