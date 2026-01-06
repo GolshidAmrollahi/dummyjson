@@ -3,3 +3,8 @@ export interface IResDto {
   skip: number,
   limit: number
 }
+
+export interface IPagination {
+  skip?: number;
+  limit?: number;
+}

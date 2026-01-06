@@ -36,7 +36,8 @@ const router = createBrowserRouter([
       },
       {
         path: "posts",
-        element: <PostsPage />
+        element: <PostsPage />,
+        errorElement: <ErrorBoundary />
       }
     ]
   }
